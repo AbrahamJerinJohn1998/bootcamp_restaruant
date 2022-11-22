@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -71,9 +73,10 @@ public int totalprice()
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         ArrayList<restaruant> arr = new ArrayList<restaruant>();
+        ArrayList<String> jsonarray = new ArrayList<>();
         int a=0,tprice,billno=1;
         while (a!=1) {
-            System.out.println("Enter 1-Add count\n2-Generate bill\n3-view all transactions\n4-exit");
+            System.out.println("Enter 1-Add count\n2-Generate bill\n3-view all transactions\n4-Json\n5-exit");
             int choice= sc.nextInt();
             switch (choice) {
                 case 1:
@@ -96,6 +99,7 @@ public int totalprice()
                     restaruant obj=new restaruant(billno,name,phno,teacount,coffeecount,snackscount,idlicount,dosacount);
                     tprice=obj.totalprice();
                     arr.add(obj);
+                    jsonarray.add(new Gson().toJson(obj));
                     billno++;
                     break;
 
@@ -125,7 +129,9 @@ public int totalprice()
                     break;
 
                 case 4:
-                    System.exit(0);
+                    System.out.println(jsonarray);
+
+                case 5:System.exit(0);
                 default:
                     System.out.println("Invalid invoice");
             }
