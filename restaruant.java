@@ -113,10 +113,17 @@ public int totalprice()
                         System.out.println("Dosa: "+rest.dosacount);
                         System.out.println("Total Price"+rest.tprice);
                     }
+                    System.out.println();
                     break;
+
                 case 3:
                     System.out.println("All transactions");
+                    for (restaruant rest:arr
+                         ) {
+                        System.out.println("Bill no:"+rest.billno+"  Name: "+rest.name+" Phone no :"+rest.phno+"  Total Amount: "+rest.tprice);
+                    }
                     break;
+
                 case 4:
                     System.exit(0);
                 default:
