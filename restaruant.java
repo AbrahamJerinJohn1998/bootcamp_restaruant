@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class restaruant {
-    int tea=10;
-    int coffee=15;
-    int snacks=10;
-    int idli=8;
-    int dosa=6;
+   static int tea=10;
+    static int coffee=15;
+    static int snacks=10;
+    static int idli=8;
+    static int dosa=6;
     int teacount,coffecount,snackscount,idlicount,dosacount,tprice,billno;
     String name;
     long phno;
