@@ -7,7 +7,7 @@ public class restaruant {
     int snacks=10;
     int idli=8;
     int dosa=6;
-    int teacount,coffecount,snackscount,idlicount,dosacount;
+    int teacount,coffecount,snackscount,idlicount,dosacount,tprice;
     String name;
     long phno;
 
@@ -24,7 +24,8 @@ public class restaruant {
     }
 public int totalprice()
 {
-    return (teacount*tea)+(coffecount*coffee)+(snackscount*snacks)+(idlicount*idli)+(dosacount*dosa);
+    tprice=(teacount*tea)+(coffecount*coffee)+(snackscount*snacks)+(idlicount*idli)+(dosacount*dosa);
+    return tprice;
 }
     public int getTea() {
         return tea;
@@ -69,10 +70,10 @@ public int totalprice()
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         ArrayList<restaruant> arr = new ArrayList<restaruant>();
-        System.out.println("Enter 1-Add count\n2-Generate bill\n3-view all transactions\n4-exit");
-        int choice= sc.nextInt();
-        int a=0;
+        int a=0,tprice;
         while (a!=1) {
+            System.out.println("Enter 1-Add count\n2-Generate bill\n3-view all transactions\n4-exit");
+            int choice= sc.nextInt();
             switch (choice) {
                 case 1:
                     System.out.println("Enter order details: ");
@@ -92,12 +93,23 @@ public int totalprice()
                     System.out.println("Dosa: ");
                     int dosacount = sc.nextInt();
                     restaruant obj=new restaruant(name,phno,teacount,coffeecount,snackscount,idlicount,dosacount);
-                    int tprice= obj.totalprice();
-
+                    tprice=obj.totalprice();
+                    arr.add(obj);
                     break;
+
                 case 2:
                     System.out.println("Your bill");
-
+                    for (restaruant rest:arr
+                         ) {
+                        System.out.println(rest.name);
+                        System.out.println(rest.phno);
+                        System.out.println("Tea: "+rest.teacount);
+                        System.out.println("Coffee: "+rest.coffecount);
+                        System.out.println("Snacks: "+rest.snackscount);
+                        System.out.println("Idli: "+rest.idlicount);
+                        System.out.println("Dosa: "+rest.dosacount);
+                        System.out.println("Total Price"+rest.tprice);
+                    }
                     break;
                 case 3:
                     System.out.println("All transactions");
