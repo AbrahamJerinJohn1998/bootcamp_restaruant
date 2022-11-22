@@ -7,11 +7,12 @@ public class restaruant {
     int snacks=10;
     int idli=8;
     int dosa=6;
-    int teacount,coffecount,snackscount,idlicount,dosacount,tprice;
+    int teacount,coffecount,snackscount,idlicount,dosacount,tprice,billno;
     String name;
     long phno;
 
-    public restaruant(String name, long phno, int teacount, int coffeecount, int snackscount, int idlicount, int dosacount) {
+    public restaruant(Integer billno, String name, long phno, int teacount, int coffeecount, int snackscount, int idlicount, int dosacount) {
+        this.billno=billno;
         this.name=name;
         this.phno=phno;
         this.teacount = teacount;
@@ -70,7 +71,7 @@ public int totalprice()
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         ArrayList<restaruant> arr = new ArrayList<restaruant>();
-        int a=0,tprice;
+        int a=0,tprice,billno=1;
         while (a!=1) {
             System.out.println("Enter 1-Add count\n2-Generate bill\n3-view all transactions\n4-exit");
             int choice= sc.nextInt();
@@ -92,15 +93,17 @@ public int totalprice()
                     int idlicount = sc.nextInt();
                     System.out.println("Dosa: ");
                     int dosacount = sc.nextInt();
-                    restaruant obj=new restaruant(name,phno,teacount,coffeecount,snackscount,idlicount,dosacount);
+                    restaruant obj=new restaruant(billno,name,phno,teacount,coffeecount,snackscount,idlicount,dosacount);
                     tprice=obj.totalprice();
                     arr.add(obj);
+                    billno++;
                     break;
 
                 case 2:
                     System.out.println("Your bill");
                     for (restaruant rest:arr
                          ) {
+                        System.out.println("Bill no: "+rest.billno);
                         System.out.println(rest.name);
                         System.out.println(rest.phno);
                         System.out.println("Tea: "+rest.teacount);
@@ -110,10 +113,17 @@ public int totalprice()
                         System.out.println("Dosa: "+rest.dosacount);
                         System.out.println("Total Price"+rest.tprice);
                     }
+                    System.out.println();
                     break;
+
                 case 3:
                     System.out.println("All transactions");
+                    for (restaruant rest:arr
+                         ) {
+                        System.out.println("Bill no:"+rest.billno+"  Name: "+rest.name+" Phone no :"+rest.phno+"  Total Amount: "+rest.tprice);
+                    }
                     break;
+
                 case 4:
                     System.exit(0);
                 default:
